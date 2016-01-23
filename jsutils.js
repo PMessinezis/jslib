@@ -1,6 +1,6 @@
 "use strict";
 
-  String.prototype.repeat = function(count) {
+String.prototype.repeat = function(count) {
     if (count < 1) return '';
     var result = '', pattern = this.valueOf();
     while (count > 1) {
@@ -8,7 +8,21 @@
       count >>>= 1, pattern += pattern;
     }
     return result + pattern;
-  };
+};
+
+Date.prototype.toISOcompact=function(){
+    var s= this.toISOString();  //e.g. 2016-01-23T14:35:18.132Z
+    s=s.substring(0, 19);
+    s=s.replace(/T/g,"");
+    s=s.replace(/\:/g,"");
+    s=s.replace(/\-/g,"");
+    return s;
+}
+
+function dateTimeStamp(){
+    var d = new Date();
+    return d.toISOcompact();
+}
 
 function msg(s) {
     return alert(s);
